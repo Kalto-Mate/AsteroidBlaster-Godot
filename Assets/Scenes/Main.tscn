@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy0g51oq6cnf1"]
+
+[ext_resource type="Shader" uid="uid://ci2eby3o6af4a" path="res://Assets/Shaders/Scroll.tres" id="1_2x8hg"]
+[ext_resource type="Texture2D" uid="uid://b4ekwbvv428of" path="res://Assets/Sprites/Space_bg1.png" id="2_6p7hj"]
+[ext_resource type="Shader" uid="uid://bdxwd041tkyl8" path="res://Assets/Shaders/Scroll2.tres" id="3_d5o6m"]
+[ext_resource type="Texture2D" uid="uid://uxawf3uj0s84" path="res://Assets/Sprites/Space_bg2.png" id="4_hp06a"]
+[ext_resource type="Shader" uid="uid://bxl54cik5vmuv" path="res://Assets/Shaders/Scroll3.tres" id="5_h1mpg"]
+[ext_resource type="Texture2D" uid="uid://dy2aposw0dw40" path="res://Assets/Sprites/Space_bg3.png" id="6_wg0f2"]
+[ext_resource type="Texture2D" uid="uid://470md43vbnrq" path="res://Assets/Sprites/Player.png" id="7_qcjpm"]
+[ext_resource type="Texture2D" uid="uid://dk4epdfstuh7i" path="res://Assets/Sprites/Asteroid_A.png" id="8_gg1ej"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rmvy"]
+shader = ExtResource("1_2x8hg")
+shader_parameter/FloatParameter = 0.025
+shader_parameter/Vector2Parameter = Vector2(1, -1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_whpv3"]
+shader = ExtResource("3_d5o6m")
+shader_parameter/FloatParameter = 0.03
+shader_parameter/Vector2Parameter = Vector2(1, -1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a11al"]
+shader = ExtResource("5_h1mpg")
+shader_parameter/FloatParameter = 0.035
+shader_parameter/Vector2Parameter = Vector2(1, -1)
+
+[node name="2D" type="Node2D"]
+
+[node name="BG" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Space_BG1" type="Sprite2D" parent="BG"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7rmvy")
+position = Vector2(659, 354)
+rotation = 0.785398
+texture = ExtResource("2_6p7hj")
+
+[node name="Space_BG2" type="Sprite2D" parent="BG"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_whpv3")
+position = Vector2(659, 354)
+rotation = 0.785398
+texture = ExtResource("4_hp06a")
+
+[node name="Space_BG3" type="Sprite2D" parent="BG"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_a11al")
+position = Vector2(659, 354)
+rotation = 0.785398
+texture = ExtResource("6_wg0f2")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(66, 374)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_qcjpm")
+
+[node name="AsteroidA" type="Sprite2D" parent="."]
+position = Vector2(496, 389)
+texture = ExtResource("8_gg1ej")
