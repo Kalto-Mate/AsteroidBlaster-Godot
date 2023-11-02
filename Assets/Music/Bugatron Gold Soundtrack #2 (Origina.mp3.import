@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7dmaxke6v6o4"
+path="res://.godot/imported/Bugatron Gold Soundtrack #2 (Origina.mp3-ad78a8fe0e2bc732901f61cba2d28d85.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Bugatron Gold Soundtrack #2 (Origina.mp3"
+dest_files=["res://.godot/imported/Bugatron Gold Soundtrack #2 (Origina.mp3-ad78a8fe0e2bc732901f61cba2d28d85.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
