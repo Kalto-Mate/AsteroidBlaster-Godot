@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy0g51oq6cnf1"]
+[gd_scene load_steps=12 format=3 uid="uid://dy0g51oq6cnf1"]
 
+[ext_resource type="PackedScene" uid="uid://dtpreh7cha3rg" path="res://Assets/Prefabs/asteroid_1.tscn" id="1_1thol"]
 [ext_resource type="Script" path="res://Assets/Scripts/AutoUnhide.gd" id="1_eosab"]
 [ext_resource type="Texture2D" uid="uid://b4ekwbvv428of" path="res://Assets/Sprites/Space_bg1.png" id="2_6p7hj"]
 [ext_resource type="Material" uid="uid://db0ftff5i034v" path="res://Assets/Shaders/BG1_Scroll.material" id="2_du0ay"]
@@ -9,14 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://dy2aposw0dw40" path="res://Assets/Sprites/Space_bg3.png" id="6_wg0f2"]
 [ext_resource type="Texture2D" uid="uid://470md43vbnrq" path="res://Assets/Sprites/Player.png" id="7_qcjpm"]
 [ext_resource type="Texture2D" uid="uid://b13qc2xyy5mpk" path="res://Assets/Sprites/Misile.png" id="9_ih10a"]
-[ext_resource type="Texture2D" uid="uid://wp1f6woasaia" path="res://Assets/Sprites/Asteroid_1.png" id="10_bcrl0"]
-[ext_resource type="Texture2D" uid="uid://c15xnudfnw6q8" path="res://Assets/Sprites/Asteroid_2.png" id="11_met0u"]
-[ext_resource type="Texture2D" uid="uid://cacoyl61h80x4" path="res://Assets/Sprites/Asteroid_3.png" id="12_88ri8"]
-[ext_resource type="Texture2D" uid="uid://dw6675v27vmvs" path="res://Assets/Sprites/Asteroid_4.png" id="13_y7pc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbsyd"]
+size = Vector2(1301, 745)
 
 [node name="2D" type="Node2D"]
 
 [node name="BG" type="Node2D" parent="."]
+visible = false
 script = ExtResource("1_eosab")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -54,22 +55,26 @@ position = Vector2(206.667, -326.667)
 scale = Vector2(0.333333, 0.333333)
 texture = ExtResource("9_ih10a")
 
-[node name="Asteroid1" type="Sprite2D" parent="."]
-position = Vector2(1095.75, 153.75)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("10_bcrl0")
+[node name="Asteroid_1" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(1191, 76)
 
-[node name="Asteroid2" type="Sprite2D" parent="."]
-position = Vector2(938.75, 155.75)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("11_met0u")
+[node name="Asteroid_2" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(1191, 204)
 
-[node name="Asteroid3" type="Sprite2D" parent="."]
-position = Vector2(752.75, 153.75)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("12_88ri8")
+[node name="Asteroid_3" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(1191, 325)
 
-[node name="Asteroid4" type="Sprite2D" parent="."]
-position = Vector2(530.75, 160.75)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("13_y7pc4")
+[node name="Asteroid_4" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(1061, 248)
+constant_torque = 1.55
+
+[node name="Asteroid_5" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(1057, 126)
+
+[node name="ObjectUnloader" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectUnloader"]
+position = Vector2(640.5, 362.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_kbsyd")
