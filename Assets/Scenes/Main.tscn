@@ -65,12 +65,16 @@ shape = SubResource("RectangleShape2D_kbsyd")
 
 [node name="Asteroid" parent="." instance=ExtResource("1_1thol")]
 position = Vector2(757, 211)
+rotation = 2.55535
 
 [node name="Asteroid2" parent="." instance=ExtResource("1_1thol")]
 position = Vector2(756, 108)
+rotation = 0.73502
 
 [node name="Asteroid3" parent="." instance=ExtResource("1_1thol")]
 position = Vector2(757, 313)
+rotation = 0.516271
 
 [node name="Asteroid4" parent="." instance=ExtResource("1_1thol")]
 position = Vector2(757, 413)
+rotation = -1.53029
