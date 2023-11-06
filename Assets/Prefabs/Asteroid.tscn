@@ -1,0 +1,27 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtpreh7cha3rg"]
+
+[ext_resource type="Texture2D" uid="uid://wp1f6woasaia" path="res://Assets/Sprites/Asteroid_1.png" id="1_2r0xg"]
+[ext_resource type="Script" path="res://Assets/Scripts/asteroid.gd" id="1_vurn3"]
+[ext_resource type="Script" path="res://Assets/Scripts/AutoUnhide.gd" id="3_iycxk"]
+[ext_resource type="Texture2D" uid="uid://c15xnudfnw6q8" path="res://Assets/Sprites/Asteroid_2.png" id="3_m4mou"]
+[ext_resource type="Texture2D" uid="uid://cacoyl61h80x4" path="res://Assets/Sprites/Asteroid_3.png" id="4_0p08w"]
+[ext_resource type="Texture2D" uid="uid://dw6675v27vmvs" path="res://Assets/Sprites/Asteroid_4.png" id="5_einde"]
+[ext_resource type="Texture2D" uid="uid://cdv00dqpug8gs" path="res://Assets/Sprites/Asteroid_dummy.png" id="6_n2yyn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ib2an"]
+radius = 38.0
+
+[node name="Asteroid" type="RigidBody2D" node_paths=PackedStringArray("Visuals", "Collision")]
+gravity_scale = 0.0
+script = ExtResource("1_vurn3")
+Visuals = NodePath("Visuals")
+Collision = NodePath("CollisionShape2D")
+Skins = Array[Texture2D]([ExtResource("1_2r0xg"), ExtResource("3_m4mou"), ExtResource("4_0p08w"), ExtResource("5_einde")])
+
+[node name="Visuals" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_n2yyn")
+script = ExtResource("3_iycxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ib2an")

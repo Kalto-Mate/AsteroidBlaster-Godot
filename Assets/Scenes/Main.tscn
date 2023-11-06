@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dy0g51oq6cnf1"]
 
-[ext_resource type="PackedScene" uid="uid://dtpreh7cha3rg" path="res://Assets/Prefabs/asteroid_1.tscn" id="1_1thol"]
+[ext_resource type="PackedScene" uid="uid://dtpreh7cha3rg" path="res://Assets/Prefabs/Asteroid.tscn" id="1_1thol"]
 [ext_resource type="Script" path="res://Assets/Scripts/AutoUnhide.gd" id="1_eosab"]
 [ext_resource type="Texture2D" uid="uid://b4ekwbvv428of" path="res://Assets/Sprites/Space_bg1.png" id="2_6p7hj"]
 [ext_resource type="Material" uid="uid://db0ftff5i034v" path="res://Assets/Shaders/BG1_Scroll.material" id="2_du0ay"]
@@ -55,22 +55,6 @@ position = Vector2(206.667, -326.667)
 scale = Vector2(0.333333, 0.333333)
 texture = ExtResource("9_ih10a")
 
-[node name="Asteroid_1" parent="." instance=ExtResource("1_1thol")]
-position = Vector2(1191, 76)
-
-[node name="Asteroid_2" parent="." instance=ExtResource("1_1thol")]
-position = Vector2(1191, 204)
-
-[node name="Asteroid_3" parent="." instance=ExtResource("1_1thol")]
-position = Vector2(1191, 325)
-
-[node name="Asteroid_4" parent="." instance=ExtResource("1_1thol")]
-position = Vector2(1061, 248)
-constant_torque = 1.55
-
-[node name="Asteroid_5" parent="." instance=ExtResource("1_1thol")]
-position = Vector2(1057, 126)
-
 [node name="ObjectUnloader" type="Area2D" parent="."]
 visible = false
 
@@ -78,3 +62,15 @@ visible = false
 position = Vector2(640.5, 362.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_kbsyd")
+
+[node name="Asteroid" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(757, 211)
+
+[node name="Asteroid2" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(756, 108)
+
+[node name="Asteroid3" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(757, 313)
+
+[node name="Asteroid4" parent="." instance=ExtResource("1_1thol")]
+position = Vector2(757, 413)
