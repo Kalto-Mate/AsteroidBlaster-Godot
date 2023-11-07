@@ -65,10 +65,14 @@ position = Vector2(640.5, 362.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_kbsyd")
 
-[node name="AsteroidSpawner" parent="." instance=ExtResource("10_s827j")]
-position = Vector2(1465.6, 216.6)
+[node name="AsteroidSpawner1" type="Node2D" parent="."]
+position = Vector2(1430, 0)
 
-[node name="AsteroidSpawner2" parent="." instance=ExtResource("10_s827j")]
-position = Vector2(1463.6, 476.6)
+[node name="AsteroidSpawner" parent="AsteroidSpawner1" instance=ExtResource("10_s827j")]
+
+[node name="AsteroidSpawner2" type="Node2D" parent="."]
+position = Vector2(1430, 360)
+
+[node name="AsteroidSpawner2" parent="AsteroidSpawner2" instance=ExtResource("10_s827j")]
 
 [connection signal="body_exited" from="AsteroidUnloader" to="AsteroidUnloader" method="_on_body_exited"]

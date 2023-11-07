@@ -12,6 +12,9 @@ var vel_multiplier:float = 50
 @export var max_angular_vel:int = 7
 var angularvel_multiplier:float = 500
 
+@export var min_resize: float = 0.5
+@export var max_resize: float = 2
+
 @export var Skins: Array[Texture2D]
 
 # Called when the node enters the scene tree for the first time.
@@ -43,7 +46,7 @@ func _ready():
 	self.constant_torque = angular_vel
 	
 	#Randomize Size====================================================================
-	var resize_factor:float = randf_range(0.5, 1.5)
+	var resize_factor:float = randf_range(min_resize, max_resize)
 	Visuals.scale = Visuals.scale * resize_factor
 	Collision.scale = Collision.scale * resize_factor
 	

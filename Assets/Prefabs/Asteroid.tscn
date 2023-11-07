@@ -16,6 +16,7 @@ gravity_scale = 0.0
 script = ExtResource("1_vurn3")
 Visuals = NodePath("Visuals")
 Collision = NodePath("CollisionShape2D")
+max_resize = 2.5
 Skins = Array[Texture2D]([ExtResource("1_2r0xg"), ExtResource("3_m4mou"), ExtResource("4_0p08w"), ExtResource("5_einde")])
 
 [node name="Visuals" type="Sprite2D" parent="."]
