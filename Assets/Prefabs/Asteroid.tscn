@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ib2an"]
 radius = 38.0
 
-[node name="Asteroid" type="RigidBody2D" node_paths=PackedStringArray("Visuals", "Collision")]
+[node name="Asteroid" type="RigidBody2D" node_paths=PackedStringArray("Visuals", "Collision") groups=["Asteroid"]]
 gravity_scale = 0.0
 script = ExtResource("1_vurn3")
 Visuals = NodePath("Visuals")
