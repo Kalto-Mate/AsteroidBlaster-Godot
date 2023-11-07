@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2540u35j5trb"]
+
+[ext_resource type="Texture2D" uid="uid://470md43vbnrq" path="res://Assets/Sprites/Player.png" id="1_gg0xx"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player.gd" id="1_o6duk"]
+[ext_resource type="PackedScene" uid="uid://c0c64nsfcoixp" path="res://Assets/Prefabs/Misile.tscn" id="2_qdmqu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pn3r"]
+radius = 18.0
+height = 82.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qnfj"]
+size = Vector2(34, 87)
+
+[node name="Player" type="Area2D" groups=["Player"]]
+script = ExtResource("1_o6duk")
+MisilePrefab = ExtResource("2_qdmqu")
+
+[node name="Visuals" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_gg0xx")
+
+[node name="Capsule" type="CollisionShape2D" parent="."]
+position = Vector2(9, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8pn3r")
+
+[node name="Rectabgle" type="CollisionShape2D" parent="."]
+position = Vector2(-32, 0)
+shape = SubResource("RectangleShape2D_1qnfj")

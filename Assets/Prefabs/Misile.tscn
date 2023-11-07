@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0c64nsfcoixp"]
+
+[ext_resource type="Texture2D" uid="uid://b13qc2xyy5mpk" path="res://Assets/Sprites/Misile.png" id="1_e40rx"]
+[ext_resource type="Script" path="res://Assets/Scripts/Misile.gd" id="1_o12vk"]
+[ext_resource type="PackedScene" uid="uid://dr7jaororygsi" path="res://Assets/Prefabs/Explosion.tscn" id="3_5j8sr"]
+
+[sub_resource type="Animation" id="Animation_w5tlk"]
+resource_name = "Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Visuals:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk4q1"]
+_data = {
+"Idle": SubResource("Animation_w5tlk")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ry8p7"]
+radius = 13.0
+height = 38.0
+
+[node name="Misile" type="RigidBody2D" node_paths=PackedStringArray("animationPlayer") groups=["Misile"]]
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_o12vk")
+animationPlayer = NodePath("Visuals/AnimationPlayer")
+explosionPrefab = ExtResource("3_5j8sr")
+velocity = 500.0
+
+[node name="Visuals" type="Sprite2D" parent="."]
+position = Vector2(-21, 0)
+rotation = 1.5708
+texture = ExtResource("1_e40rx")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+root_node = NodePath("../../CollisionShape2D")
+speed_scale = 15.0
+libraries = {
+"": SubResource("AnimationLibrary_dk4q1")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ry8p7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

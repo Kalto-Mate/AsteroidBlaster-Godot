@@ -7,13 +7,13 @@
 [ext_resource type="Material" uid="uid://b5ownqcaduafo" path="res://Assets/Shaders/BG2_Scroll.material" id="4_y4wvb"]
 [ext_resource type="Material" uid="uid://fluudfuwy1eg" path="res://Assets/Shaders/BG3_Scroll.material" id="6_d4dt7"]
 [ext_resource type="Texture2D" uid="uid://dy2aposw0dw40" path="res://Assets/Sprites/Space_bg3.png" id="6_wg0f2"]
-[ext_resource type="Texture2D" uid="uid://470md43vbnrq" path="res://Assets/Sprites/Player.png" id="7_qcjpm"]
-[ext_resource type="Texture2D" uid="uid://b13qc2xyy5mpk" path="res://Assets/Sprites/Misile.png" id="9_ih10a"]
+[ext_resource type="PackedScene" uid="uid://b2540u35j5trb" path="res://Assets/Prefabs/Player.tscn" id="9_r2fvg"]
 [ext_resource type="Script" path="res://Assets/Scripts/AsteroidUnloader.gd" id="10_kfrcf"]
 [ext_resource type="PackedScene" uid="uid://4egm1j1ub43r" path="res://Assets/Prefabs/AsteroidSpawner.tscn" id="10_s827j"]
+[ext_resource type="PackedScene" uid="uid://c0c64nsfcoixp" path="res://Assets/Prefabs/Misile.tscn" id="11_8628n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbsyd"]
-size = Vector2(1301, 745)
+size = Vector2(1086.83, 501.333)
 
 [node name="2D" type="Node2D"]
 
@@ -45,23 +45,15 @@ position = Vector2(659, 354)
 rotation = 0.785398
 texture = ExtResource("6_wg0f2")
 
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(66, 374)
-rotation = 1.5708
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("7_qcjpm")
-
-[node name="Misile" type="Sprite2D" parent="Player"]
-position = Vector2(206.667, -326.667)
-scale = Vector2(0.333333, 0.333333)
-texture = ExtResource("9_ih10a")
+[node name="Player" parent="." instance=ExtResource("9_r2fvg")]
+position = Vector2(278, 372)
 
 [node name="AsteroidUnloader" type="Area2D" parent="."]
 visible = false
 script = ExtResource("10_kfrcf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidUnloader"]
-position = Vector2(640.5, 362.5)
+position = Vector2(801.125, 360)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_kbsyd")
 
@@ -74,5 +66,8 @@ position = Vector2(1430, 0)
 position = Vector2(1430, 360)
 
 [node name="AsteroidSpawner2" parent="AsteroidSpawner2" instance=ExtResource("10_s827j")]
+
+[node name="Misile" parent="." instance=ExtResource("11_8628n")]
+position = Vector2(412, 371)
 
 [connection signal="body_exited" from="AsteroidUnloader" to="AsteroidUnloader" method="_on_body_exited"]

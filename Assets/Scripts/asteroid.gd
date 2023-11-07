@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Asteroid
 
 @export var Visuals: Sprite2D
 @export var Collision: CollisionShape2D
@@ -57,3 +58,9 @@ func _ready():
 	
 	#print(str (get_instance_id()) + ">" + self.name + "____ Vx:" + str(velocity_x) + " R:" + str(angular_vel) + " Size:" + str(resize_factor) + " Text:" + str(skinIndex))
 	#print("       Visuals:" + str (Visuals.get_instance_id()) + "Collision:" + str (Collision.get_instance_id())  ) 
+
+func ChangeCourse(misileTransform: Vector2,Speed: float): #Expected for call in misile script
+	var newDirection : Vector2 = self.global_position - misileTransform
+	newDirection = newDirection.normalized()
+	self.linear_velocity = newDirection*Speed
+	pass

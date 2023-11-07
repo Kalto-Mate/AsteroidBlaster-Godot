@@ -6,7 +6,7 @@ extends Sprite2D
 var MaxAngleRad: float
 
 func _ready():
-	#self.visible = false
+	self.visible = false
 	MaxAngleRad = deg_to_rad(abs(MaxAngleDeg))
 	animationPlayer.play("UpAndDown")
 
