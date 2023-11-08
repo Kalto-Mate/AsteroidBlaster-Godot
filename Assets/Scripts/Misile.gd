@@ -17,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func Detonate():
-	print("Misile: Boom")
+	#print("Misile: Boom")
 	var new_explosion = explosionPrefab.instantiate()
 	new_explosion.position = self.position
 	new_explosion.rotation = self.global_rotation

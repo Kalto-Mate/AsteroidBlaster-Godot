@@ -6,5 +6,5 @@ func _ready():
 	animationPlayer.play("Explode")
 
 func selfDestruct():
-	print("Explosion Self Destruct")
+	#print("Explosion Self Destruct")
 	self.queue_free()

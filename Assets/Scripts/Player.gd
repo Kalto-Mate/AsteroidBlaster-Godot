@@ -1,18 +1,35 @@
-extends Area2D
+extends CharacterBody2D
 @export var MisilePrefab : PackedScene
+@export var Cooldown : Timer
+@export var FireRate : float = 1
+@export var MovementSpeed : float = 300
+
+var CanShoot : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	Cooldown.wait_time = FireRate
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("Shoot"):
+func _physics_process(delta):
+	get_input()
+	self.move_and_slide()
+		
+func get_input():
+	if Input.is_action_just_pressed("Shoot")  and  CanShoot:
 		shoot()
+	var input_dir = Input.get_vector("Left", "Right", "Up", "Down")
+	velocity = input_dir * MovementSpeed
 
 func shoot():
+	Cooldown.start()
+	CanShoot = false
 	var new_misile = MisilePrefab.instantiate()
 	new_misile.position = self.position
 	new_misile.rotation = self.global_rotation
 	add_sibling(new_misile)
+	
+func enableShooting():
+	CanShoot = true
+
+

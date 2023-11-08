@@ -7,4 +7,4 @@ extends Area2D
 func _on_body_exited(body):
 	if body is Asteroid or body is Misile:
 		body.queue_free()
-		print("Freed " + body.name)
+		#print("Freed " + body.name)
