@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0hoq3o3ucowu"
+path="res://.godot/imported/Bugatron Gold - level 1 Looped.wav-0524af14ee4cd4c5cf52abfe3d50d0a3.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Bugatron Gold - level 1 Looped.wav"
+dest_files=["res://.godot/imported/Bugatron Gold - level 1 Looped.wav-0524af14ee4cd4c5cf52abfe3d50d0a3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

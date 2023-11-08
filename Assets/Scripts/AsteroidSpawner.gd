@@ -3,12 +3,14 @@ extends Sprite2D
 @export var AsteroidPrefab: PackedScene
 @export var MaxAngleDeg: float = 10
 @export var animationPlayer : AnimationPlayer
+@export var timer : Timer
 var MaxAngleRad: float
 
 func _ready():
 	#self.visible = false
 	MaxAngleRad = deg_to_rad(abs(MaxAngleDeg))
 	animationPlayer.play("UpAndDown")
+	GameState.PlayerDied.connect(StopSpawning)
 
 func Spawn(): #Called from timer timeout
 	var new_asteroid = AsteroidPrefab.instantiate()
@@ -23,3 +25,6 @@ func RandomizeAngle():
 func _on_timer_timeout():
 	RandomizeAngle()
 	Spawn()
+
+func StopSpawning():
+	timer.stop()

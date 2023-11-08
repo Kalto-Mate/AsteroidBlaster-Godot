@@ -7,19 +7,20 @@ class_name Asteroid
 @export var local_movement_direction : Vector2 = Vector2(-1,0)
 @export var min_vel:int = 4
 @export var max_vel:int = 8
-var vel_multiplier:float = 50
+var vel_multiplier:float = 100
 
 @export var min_angular_vel:int = 3
 @export var max_angular_vel:int = 7
 var angularvel_multiplier:float = 500
 
-@export var min_resize: float = 0.5
-@export var max_resize: float = 2
+@export var min_resize: float = 0.75
+@export var max_resize: float = 2.5
 
 @export var Skins: Array[Texture2D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameState.PlayerDied.connect(Flee)
 	
 	#Randomize Linear Speed ====================================================================
 	var velocity:float = randf_range(min_vel, max_vel) * vel_multiplier
@@ -64,3 +65,13 @@ func ChangeCourse(misileTransform: Vector2,Speed: float): #Expected for call in 
 	newDirection = newDirection.normalized()
 	self.linear_velocity = newDirection*Speed
 	pass
+
+
+func _on_body_entered(body):
+	if body is Player:
+		body.Die()
+		self.ChangeCourse(body.global_position,400)
+
+func Flee(): #Used for asteroids to move out of the screen faster on player death
+	var ScreenCenterRight : Vector2 = Vector2 (1280/2,720/2)
+	self.ChangeCourse(ScreenCenterRight,1000)

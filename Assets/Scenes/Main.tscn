@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy0g51oq6cnf1"]
+[gd_scene load_steps=19 format=3 uid="uid://dy0g51oq6cnf1"]
 
+[ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="1_55bou"]
 [ext_resource type="Script" path="res://Assets/Scripts/AutoUnhide.gd" id="1_eosab"]
 [ext_resource type="Texture2D" uid="uid://b4ekwbvv428of" path="res://Assets/Sprites/Space_bg1.png" id="2_6p7hj"]
+[ext_resource type="AudioStream" uid="uid://c0hoq3o3ucowu" path="res://Assets/Music/Bugatron Gold - level 1 Looped.wav" id="2_8isqj"]
 [ext_resource type="Material" uid="uid://db0ftff5i034v" path="res://Assets/Shaders/BG1_Scroll.material" id="2_du0ay"]
+[ext_resource type="Texture2D" uid="uid://btjmby2ywquci" path="res://Assets/Sprites/BlackScreen.png" id="3_ft6us"]
 [ext_resource type="Texture2D" uid="uid://uxawf3uj0s84" path="res://Assets/Sprites/Space_bg2.png" id="4_hp06a"]
 [ext_resource type="Material" uid="uid://b5ownqcaduafo" path="res://Assets/Shaders/BG2_Scroll.material" id="4_y4wvb"]
 [ext_resource type="Material" uid="uid://fluudfuwy1eg" path="res://Assets/Shaders/BG3_Scroll.material" id="6_d4dt7"]
@@ -10,6 +13,41 @@
 [ext_resource type="PackedScene" uid="uid://b2540u35j5trb" path="res://Assets/Prefabs/Player.tscn" id="9_r2fvg"]
 [ext_resource type="Script" path="res://Assets/Scripts/AsteroidUnloader.gd" id="10_kfrcf"]
 [ext_resource type="PackedScene" uid="uid://4egm1j1ub43r" path="res://Assets/Prefabs/AsteroidSpawner.tscn" id="10_s827j"]
+
+[sub_resource type="Animation" id="Animation_1gpd2"]
+resource_name = "GameOver_sequence"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ResetGame"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blackout:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8e7hg"]
+_data = {
+"GameOver_sequence": SubResource("Animation_1gpd2")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feda6"]
 size = Vector2(54.5, 848)
@@ -20,7 +58,28 @@ size = Vector2(1388, 66)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbsyd"]
 size = Vector2(1086.83, 501.333)
 
-[node name="2D" type="Node2D"]
+[node name="MAIN" type="Node2D"]
+
+[node name="GAME MANAGER" type="Node" parent="." node_paths=PackedStringArray("MusicPlayer", "animationPlayer")]
+script = ExtResource("1_55bou")
+MusicPlayer = NodePath("MusicPlayer")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="GAME MANAGER"]
+stream = ExtResource("2_8isqj")
+volume_db = -8.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GAME MANAGER"]
+libraries = {
+"": SubResource("AnimationLibrary_8e7hg")
+}
+
+[node name="Blackout" type="Sprite2D" parent="GAME MANAGER"]
+visible = false
+position = Vector2(643, 347)
+scale = Vector2(21.8, 12.64)
+texture = ExtResource("3_ft6us")
 
 [node name="SCENARIO" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -90,16 +149,31 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_kbsyd")
 
 [node name="Player" parent="." instance=ExtResource("9_r2fvg")]
-position = Vector2(399, 365)
+position = Vector2(150, 360)
 
 [node name="AsteroidSpawner1" type="Node2D" parent="."]
 position = Vector2(1430, 0)
 
 [node name="AsteroidSpawner" parent="AsteroidSpawner1" instance=ExtResource("10_s827j")]
 
+[node name="Timer" parent="AsteroidSpawner1/AsteroidSpawner" index="0"]
+wait_time = 1.25
+
 [node name="AsteroidSpawner2" type="Node2D" parent="."]
-position = Vector2(1430, 360)
+position = Vector2(1430, 180)
 
 [node name="AsteroidSpawner2" parent="AsteroidSpawner2" instance=ExtResource("10_s827j")]
 
+[node name="AsteroidSpawner3" type="Node2D" parent="."]
+position = Vector2(1430, 360)
+
+[node name="AsteroidSpawner" parent="AsteroidSpawner3" instance=ExtResource("10_s827j")]
+MaxAngleDeg = 15.0
+
+[node name="Timer" parent="AsteroidSpawner3/AsteroidSpawner" index="0"]
+wait_time = 1.0
+
 [connection signal="body_exited" from="SCENARIO/GarbageColector" to="SCENARIO/GarbageColector" method="_on_body_exited"]
+
+[editable path="AsteroidSpawner1/AsteroidSpawner"]
+[editable path="AsteroidSpawner3/AsteroidSpawner"]

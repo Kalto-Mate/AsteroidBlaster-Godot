@@ -26,13 +26,15 @@ _data = {
 "UpAndDown": SubResource("Animation_bb1ey")
 }
 
-[node name="AsteroidSpawner" type="Sprite2D" node_paths=PackedStringArray("animationPlayer")]
+[node name="AsteroidSpawner" type="Sprite2D" node_paths=PackedStringArray("animationPlayer", "timer")]
 position = Vector2(0, 360)
 scale = Vector2(0.305, 0.305)
 texture = ExtResource("1_q6oqa")
 script = ExtResource("2_u8mr5")
 AsteroidPrefab = ExtResource("3_rr0eb")
+MaxAngleDeg = 15.0
 animationPlayer = NodePath("AnimationPlayer")
+timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

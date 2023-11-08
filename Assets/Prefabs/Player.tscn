@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2540u35j5trb"]
+[gd_scene load_steps=6 format=3 uid="uid://b2540u35j5trb"]
 
 [ext_resource type="Texture2D" uid="uid://470md43vbnrq" path="res://Assets/Sprites/Player.png" id="1_gg0xx"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player.gd" id="1_o6duk"]
 [ext_resource type="PackedScene" uid="uid://c0c64nsfcoixp" path="res://Assets/Prefabs/Misile.tscn" id="2_qdmqu"]
+[ext_resource type="PackedScene" uid="uid://doel8te725wxr" path="res://Assets/Prefabs/PlayerExplosion.tscn" id="3_7t5yk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pn3r"]
 radius = 18.0
-height = 106.0
+height = 86.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Cooldown") groups=["Player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_o6duk")
 MisilePrefab = ExtResource("2_qdmqu")
+ExplosionPrefab = ExtResource("3_7t5yk")
 Cooldown = NodePath("MisileCooldown")
+FireRate = 5.0
+MovementSpeed = 400.0
 
 [node name="Visuals" type="Sprite2D" parent="."]
 rotation = 1.5708

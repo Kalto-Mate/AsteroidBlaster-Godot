@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://blom1e6qt3boy"
+path="res://.godot/imported/loop 2.wav-f9697d8cdcf9530cfa5306b4edd64a65.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Unused/loop 2.wav"
+dest_files=["res://.godot/imported/loop 2.wav-f9697d8cdcf9530cfa5306b4edd64a65.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

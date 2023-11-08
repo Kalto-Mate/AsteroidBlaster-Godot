@@ -15,10 +15,16 @@ radius = 38.0
 collision_layer = 4
 collision_mask = 13
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_vurn3")
 Visuals = NodePath("Visuals")
 Collision = NodePath("CollisionShape2D")
-max_resize = 2.5
+min_vel = 5
+min_angular_vel = 5
+max_angular_vel = 9
+min_resize = 1.0
+max_resize = 3.0
 Skins = Array[Texture2D]([ExtResource("1_2r0xg"), ExtResource("3_m4mou"), ExtResource("4_0p08w"), ExtResource("5_einde")])
 
 [node name="Visuals" type="Sprite2D" parent="."]
@@ -28,3 +34,5 @@ script = ExtResource("3_iycxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ib2an")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
