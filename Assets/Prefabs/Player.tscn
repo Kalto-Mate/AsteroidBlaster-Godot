@@ -1,34 +1,115 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2540u35j5trb"]
+[gd_scene load_steps=11 format=3 uid="uid://b2540u35j5trb"]
 
 [ext_resource type="Texture2D" uid="uid://470md43vbnrq" path="res://Assets/Sprites/Player.png" id="1_gg0xx"]
 [ext_resource type="Script" path="res://Assets/Scripts/Player.gd" id="1_o6duk"]
 [ext_resource type="PackedScene" uid="uid://c0c64nsfcoixp" path="res://Assets/Prefabs/Misile.tscn" id="2_qdmqu"]
 [ext_resource type="PackedScene" uid="uid://doel8te725wxr" path="res://Assets/Prefabs/PlayerExplosion.tscn" id="3_7t5yk"]
+[ext_resource type="Texture2D" uid="uid://blpssuojwweh2" path="res://Assets/Sprites/PlayerBar.png" id="4_lvpxo"]
+[ext_resource type="Texture2D" uid="uid://s0hfseqfs377" path="res://Assets/Sprites/PlayerBacking.png" id="5_4piww"]
+[ext_resource type="AudioStream" uid="uid://b8r81yj7qykjj" path="res://Assets/Sound/chargeComplete.wav" id="7_aus62"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pn3r"]
 radius = 18.0
 height = 86.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Cooldown") groups=["Player"]]
+[sub_resource type="Animation" id="Animation_5ep7b"]
+resource_name = "Recharge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Ship:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Bar:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.15, 0), Vector2(0.15, 0.15)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"enableShooting"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6dg7"]
+_data = {
+"Recharge": SubResource("Animation_5ep7b")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer", "audioStreamPlayer") groups=["Player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_o6duk")
 MisilePrefab = ExtResource("2_qdmqu")
 ExplosionPrefab = ExtResource("3_7t5yk")
-Cooldown = NodePath("MisileCooldown")
-FireRate = 5.0
+animationPlayer = NodePath("AnimationPlayer")
+audioStreamPlayer = NodePath("AudioStreamPlayer")
 MovementSpeed = 400.0
 
-[node name="Visuals" type="Sprite2D" parent="."]
-rotation = 1.5708
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_gg0xx")
-
 [node name="Capsule" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8pn3r")
 
-[node name="MisileCooldown" type="Timer" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
 
-[connection signal="timeout" from="MisileCooldown" to="." method="enableShooting"]
+[node name="Back" type="Sprite2D" parent="Visuals"]
+rotation = 1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_4piww")
+
+[node name="Bar" type="Sprite2D" parent="Visuals"]
+position = Vector2(-47.465, 0)
+rotation = 1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_lvpxo")
+offset = Vector2(0, -207)
+
+[node name="Ship" type="Sprite2D" parent="Visuals"]
+rotation = 1.5708
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_gg0xx")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o6dg7")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_aus62")

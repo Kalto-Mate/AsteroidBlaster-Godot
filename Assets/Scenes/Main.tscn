@@ -155,6 +155,7 @@ position = Vector2(150, 360)
 position = Vector2(1430, 0)
 
 [node name="AsteroidSpawner" parent="AsteroidSpawner1" instance=ExtResource("10_s827j")]
+MaxAngleDeg = 15.0
 
 [node name="Timer" parent="AsteroidSpawner1/AsteroidSpawner" index="0"]
 wait_time = 1.25

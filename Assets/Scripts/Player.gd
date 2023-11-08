@@ -4,16 +4,17 @@ class_name Player
 
 @export var MisilePrefab : PackedScene
 @export var ExplosionPrefab : PackedScene
-@export var Cooldown : Timer
-@export var FireRate : float = 1
+@export var animationPlayer : AnimationPlayer
+@export var audioStreamPlayer: AudioStreamPlayer
+@export var FireRate : float = 5
 @export var MovementSpeed : float = 300
 
 
-var CanShoot : bool = true
+@export var CanShoot : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Cooldown.wait_time = FireRate
+	animationPlayer.speed_scale = 1/FireRate #This works assuming the animation is 1 second long
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -28,7 +29,7 @@ func get_input():
 	velocity = input_dir * MovementSpeed
 
 func shoot():
-	Cooldown.start()
+	animationPlayer.play("Recharge")
 	CanShoot = false
 	var new_misile = MisilePrefab.instantiate()
 	new_misile.position = self.position
