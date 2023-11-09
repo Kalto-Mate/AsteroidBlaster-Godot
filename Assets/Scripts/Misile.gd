@@ -15,9 +15,10 @@ func _ready():
 	#print("global_velocity: " + str(global_velocity)   )
 	animationPlayer.play("Idle")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func Detonate():
 	#print("Misile: Boom")
+	GameState.MisileImpacted.emit()
+	
 	var new_explosion = explosionPrefab.instantiate()
 	new_explosion.position = self.position
 	new_explosion.rotation = self.global_rotation
