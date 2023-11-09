@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dy0g51oq6cnf1"]
+[gd_scene load_steps=23 format=3 uid="uid://dy0g51oq6cnf1"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/GameManager.gd" id="1_55bou"]
 [ext_resource type="Script" path="res://Assets/Scripts/AutoUnhide.gd" id="1_eosab"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b2540u35j5trb" path="res://Assets/Prefabs/Player.tscn" id="9_r2fvg"]
 [ext_resource type="Script" path="res://Assets/Scripts/AsteroidUnloader.gd" id="10_kfrcf"]
 [ext_resource type="PackedScene" uid="uid://4egm1j1ub43r" path="res://Assets/Prefabs/AsteroidSpawner.tscn" id="10_s827j"]
+[ext_resource type="Texture2D" uid="uid://bfv280a17sfrr" path="res://Assets/Sprites/1pixel.png" id="15_2ybss"]
 
 [sub_resource type="FontFile" id="FontFile_e47yx"]
 cache/0/16/0/ascent = 0.0
@@ -2930,8 +2931,6 @@ size = Vector2(1086.83, 501.333)
 script = ExtResource("1_55bou")
 MusicPlayer = NodePath("MusicPlayer")
 animationPlayer = NodePath("AnimationPlayer")
-SurvivalTickFrec = 1.0
-PointsPerSurvivalTick = 50
 
 [node name="SCORE SYSTEM" type="Node2D" parent="GAME MANAGER" node_paths=PackedStringArray("ScoreTimer", "ScoreDisplay")]
 position = Vector2(13, -6)
@@ -3054,6 +3053,11 @@ position = Vector2(1430, 360)
 
 [node name="Timer" parent="AsteroidSpawner3/AsteroidSpawner" index="0"]
 wait_time = 1.0
+
+[node name="1Pixel" type="Sprite2D" parent="."]
+position = Vector2(140, 360)
+scale = Vector2(125, 3.494)
+texture = ExtResource("15_2ybss")
 
 [connection signal="timeout" from="GAME MANAGER/SCORE SYSTEM/ScoreTimer" to="GAME MANAGER/SCORE SYSTEM" method="_on_score_timer_timeout"]
 [connection signal="body_exited" from="SCENARIO/GarbageColector" to="SCENARIO/GarbageColector" method="_on_body_exited"]

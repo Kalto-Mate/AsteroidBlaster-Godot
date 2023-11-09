@@ -9,7 +9,7 @@
 [sub_resource type="Animation" id="Animation_ueymd"]
 resource_name = "Idle"
 length = 0.2
-loop_mode = 1
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,14 +66,12 @@ _data = {
 radius = 18.0
 height = 86.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("FireCooldownSequencer", "ShipAnimator", "audioStreamPlayer", "misileSpawnPoint") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audioStreamPlayer", "misileSpawnPoint") groups=["Player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_o6duk")
 MisilePrefab = ExtResource("2_qdmqu")
 ExplosionPrefab = ExtResource("3_7t5yk")
-FireCooldownSequencer = NodePath("FiringCooldownSequencer")
-ShipAnimator = NodePath("Visuals/ShipAnimator")
 audioStreamPlayer = NodePath("AudioStreamPlayer")
 misileSpawnPoint = NodePath("MisileSpawnPoint")
 MovementSpeed = 400.0

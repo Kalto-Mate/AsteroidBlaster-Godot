@@ -4,10 +4,8 @@ extends Node
 
 var Score: int = 0
 
-
-@export var SurvivalTickFrec : float = 2
-@export var PointsPerSurvivalTick : int = 10
-@export var PointsForMisileImpact : int = 500
+@export var PointsPerSurvivalTick : int = 50
+@export var PointsForMisileImpact : int = 1500
 
 
 # Called when the node enters the scene tree for the first time.
