@@ -7,7 +7,6 @@ class_name Asteroid
 @export var local_movement_direction : Vector2 = Vector2(-1,0)
 @export var min_vel:int = 4
 @export var max_vel:int = 8
-var vel_multiplier:float = 100
 
 @export var min_angular_vel:int = 3
 @export var max_angular_vel:int = 7
@@ -23,7 +22,7 @@ func _ready():
 	GameState.PlayerDied.connect(Flee)
 	
 	#Randomize Linear Speed ====================================================================
-	var velocity:float = randf_range(min_vel, max_vel) * vel_multiplier
+	var velocity:float = randf_range(min_vel, max_vel) * GameState.AsteroidVelMultiplier
 	
 	#Transform cannot be grabbed to reference directly, so we use a getter:
 	var local_transform : Transform2D = self.get_transform()

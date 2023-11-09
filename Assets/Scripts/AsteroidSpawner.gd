@@ -7,11 +7,16 @@ extends Sprite2D
 var MaxAngleRad: float
 
 func _ready():
-	#self.visible = false
+	self.visible = false
+	GameState.SpawnRateUpdated.connect(UpdateSpawnRate)
+	
 	MaxAngleRad = deg_to_rad(abs(MaxAngleDeg))
 	animationPlayer.play("UpAndDown")
 	GameState.PlayerDied.connect(StopSpawning)
-
+	
+func UpdateSpawnRate():
+	timer.wait_time = GameState.AsteroidSpawnRate	
+	
 func Spawn(): #Called from timer timeout
 	var new_asteroid = AsteroidPrefab.instantiate()
 	new_asteroid.position = self.position
