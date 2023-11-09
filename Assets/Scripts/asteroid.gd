@@ -19,7 +19,7 @@ var angularvel_multiplier:float = 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameState.PlayerDied.connect(Flee)
+	#GameState.PlayerDied.connect(Flee)
 	
 	#Randomize Linear Speed ====================================================================
 	var velocity:float = randf_range(min_vel, max_vel) * GameState.AsteroidVelMultiplier

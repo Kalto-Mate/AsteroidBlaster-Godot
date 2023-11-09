@@ -8,8 +8,8 @@
 
 [sub_resource type="Animation" id="Animation_ueymd"]
 resource_name = "Idle"
-length = 0.2
-loop_mode = 1
+length = 2.0
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,10 +17,22 @@ tracks/0/path = NodePath("../Visuals/Ship:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Visuals:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0261799, 0.0, 0.0261799]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fo7ks"]
@@ -79,6 +91,7 @@ misileSpawnPoint = NodePath("MisileSpawnPoint")
 MovementSpeed = 400.0
 
 [node name="Visuals" type="Node2D" parent="."]
+rotation = 0.0261799
 
 [node name="ShipAnimator" type="AnimationPlayer" parent="Visuals"]
 root_node = NodePath("../../FiringCooldownSequencer")
@@ -108,4 +121,4 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8pn3r")
 
 [node name="MisileSpawnPoint" type="Node2D" parent="."]
-position = Vector2(58, 0)
+position = Vector2(45, 0)
